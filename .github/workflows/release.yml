@@ -33,7 +33,7 @@ jobs:
           config: ./.github/cliff.toml
           args: -o CHANGES.md --verbose --latest
         env:
-          OUTPUT: CHANGELOG.md
+          OUTPUT: CHANGES.md
           GITHUB_REPO: ${{ github.repository }}
 
       - name: Download artifact
