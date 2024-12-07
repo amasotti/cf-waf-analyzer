@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file (created with git cliff).
 
+## [0.2.10] - 2024-12-07
+
+[Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/3ef5a6845a6da4c36bdd2967e50d7709b69279a2..58842a289408e8fd87e163a776f0071a298f7779)
+### 🐛 Bug Fixes
+
+- *(ci)* Fix (hopefully) the changelog ([58842a2](https://github.com/amasotti/cf-waf-analyzer/commit/58842a289408e8fd87e163a776f0071a298f7779)) - by _Antonio Masotti_
+
+## [0.2.9] - 2024-12-07
+
+[Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/f652dc80904a0e44dcb550fff3b1f600dd052076..3ef5a6845a6da4c36bdd2967e50d7709b69279a2)
+### 🐛 Bug Fixes
+
+- *(ci)* Add fetch depth 0 ([3ef5a68](https://github.com/amasotti/cf-waf-analyzer/commit/3ef5a6845a6da4c36bdd2967e50d7709b69279a2)) - by _Antonio Masotti_
+
+## [0.2.8] - 2024-12-07
+
+[Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/1503752e40999bd7ad66d980320a368cdf938190..f652dc80904a0e44dcb550fff3b1f600dd052076)
+### 🐛 Bug Fixes
+
+- *(ci)* Add fetch depth 0 ([f652dc8](https://github.com/amasotti/cf-waf-analyzer/commit/f652dc80904a0e44dcb550fff3b1f600dd052076)) - by _Antonio Masotti_
+
+## [0.2.7] - 2024-12-07
+
+[Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/413942ba54f543a78f0c5bd3a482bc69cdf259da..1503752e40999bd7ad66d980320a368cdf938190)
+### 🐛 Bug Fixes
+
+- *(ci)* Pass body file ([1503752](https://github.com/amasotti/cf-waf-analyzer/commit/1503752e40999bd7ad66d980320a368cdf938190)) - by _Antonio Masotti_
+
+## [0.2.6] - 2024-12-07
+
+[Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/108d72ce9da581c98aea872f5cd9ee35dc28c537..413942ba54f543a78f0c5bd3a482bc69cdf259da)
+### 🐛 Bug Fixes
+
+- *(ci)* Fix changelog content in releases, update changelog and cargo version ([413942b](https://github.com/amasotti/cf-waf-analyzer/commit/413942ba54f543a78f0c5bd3a482bc69cdf259da)) - by _Antonio Masotti_
+
 ## [0.2.5] - 2024-12-07
 
 [Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/8f3f44244d8cb68946285255d182d07c73f983d3..108d72ce9da581c98aea872f5cd9ee35dc28c537)
