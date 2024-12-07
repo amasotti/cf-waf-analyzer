@@ -25,6 +25,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        fetch-depth: 0
 
 
       - name: Changelog
