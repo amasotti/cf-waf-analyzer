@@ -26,8 +26,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          depth: 0
+          fetch-depth: 0
 
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: wafstat
 
       - name: Changelog
         id: changelog
@@ -35,11 +39,8 @@ jobs:
         with:
           config: ./.github/cliff.toml
           args: -o CHANGES.md --verbose --latest
-
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: wafstat
+        env:
+          OUTPUT: CHANGES.md
 
       - name: Create GitHub Release
         id: create_release
@@ -48,5 +49,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           name: Release ${{ github.ref_name }}
-          bodyFile: CHANGES.md
-          artifacts: 'wafstat'
+          body: |
+            ${{ steps.changelog.outputs.changelog }}
+          artifacts: 'wafstat,CHANGES.md'
