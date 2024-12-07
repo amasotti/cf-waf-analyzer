@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run CI pipeline
+        uses: ./.github/workflows/ci.yml
+        secrets: inherit
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        if-no-files-found: error
+        retention-days: 3
+        with:
+          name: wafstat
+          path: target/release/wafstat
+
+  release:
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install git-cliff
+        run: cargo install git-cliff
+
+      - name: Generate changelog
+        run: git cliff -o CHANGES.md --verbose --latest
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: wafstat
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          name: Release ${{ github.ref }}
+          body: CHANGES.md
+          artifacts: "wafstat"
