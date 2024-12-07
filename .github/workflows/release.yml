@@ -47,6 +47,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
-          name: Release ${{ github.ref }}
-          body: CHANGES.md
+          name: Release ${{ github.ref_name }}
+          bodyFile: CHANGES.md
           artifacts: 'wafstat'
