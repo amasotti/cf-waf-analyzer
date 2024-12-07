@@ -56,5 +56,17 @@ jobs:
       - name: Run tests
         run: cargo test
 
+      - name: Build artifact
+        run: cargo build --release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          if-no-files-found: error
+          retention-days: 3
+          name: wafstat
+          path: target/release/wafstat
+
       - name: Install git-cliff
         run: cargo install git-cliff && git cliff --unreleased --bump
+

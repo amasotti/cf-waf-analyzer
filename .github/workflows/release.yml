@@ -11,18 +11,7 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run CI pipeline
-        uses: ./.github/workflows/ci.yml
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          if-no-files-found: error
-          retention-days: 3
-          name: wafstat
-          path: target/release/wafstat
+    uses: ./.github/workflows/ci.yml
 
   release:
     runs-on: ubuntu-latest
