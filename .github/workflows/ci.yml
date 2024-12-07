@@ -13,7 +13,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -51,5 +53,8 @@ jobs:
       - name: Run Clippy
         run: cargo clippy -- -D warnings
 
-      - name: Build project
-        run: cargo build --release
+      - name: Run tests
+        run: cargo test
+
+      - name: Install git-cliff
+        run: cargo install git-cliff && git cliff --unreleased --bump
