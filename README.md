@@ -1,4 +1,4 @@
-# cf-waf-analyzer
+# Cloudflare WAF events analyzer
 
 `cf-waf-analyzer` is a simple rust based cli utility for analyzing Cloudflare Web Application Firewall (WAF) logs. 
 It helps parse and interpret security events to enhance your firewall configurations.

@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file (created wit
 
 ## [unreleased]
 
-[Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/394c36f7682a4cc6622849c326035fcd79f0621d..)
+[Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/ee9f9b291694a987f8cdc10eee9c2369e48ac2ef..)
+### 🚀 Features
+
+- *(docs)* Add changelog ([0ded9b5](https://github.com/amasotti/cf-waf-analyzer/commit/0ded9b5bbed250f8a1d84fd0035848229807d142)) - by _Antonio Masotti_
+
+## [0.1.0] - 2024-12-07
+
+[Compare with last version](https://github.com/amasotti/cf-waf-analyzer/compare/394c36f7682a4cc6622849c326035fcd79f0621d..ee9f9b291694a987f8cdc10eee9c2369e48ac2ef)
 ### 🚀 Features
 
 - Add dockerfile ([ee9f9b2](https://github.com/amasotti/cf-waf-analyzer/commit/ee9f9b291694a987f8cdc10eee9c2369e48ac2ef)) - by _Antonio Masotti_
