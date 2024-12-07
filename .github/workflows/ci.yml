@@ -70,5 +70,6 @@ jobs:
           path: target/release/wafstat
 
       - name: Install git-cliff
+        if: github.event_name != 'workflow_dispatch'
         run: cargo install git-cliff && git cliff --unreleased --bump
 
