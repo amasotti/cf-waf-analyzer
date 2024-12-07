@@ -50,5 +50,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           name: Release ${{ github.ref_name }}
-          bodyFile: ${{ steps.changelog.outputs.changelog }}
+          body: ${{ steps.changelog.outputs.content }}
           artifacts: 'wafstat'
