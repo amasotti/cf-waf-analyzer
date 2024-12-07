@@ -1,7 +1,7 @@
 use crate::error::Result;
 use crate::model::{FirewallEvent, RulesetInfo};
-use crate::output::OutputFormatter;
-use crate::{AnalysisResult, CLOUDFLARE_RULESET_ID, LEAKED_CREDS_RULESET_ID, OWASP_RULESET_ID};
+use crate::output::output_formatter::OutputFormatter;
+use crate::{initialize_ruleset_mappings, AnalysisResult};
 use std::collections::{HashMap, HashSet};
 use std::fs::File;
 use std::io::BufReader;
@@ -24,27 +24,8 @@ impl Default for FirewallAnalyzer {
 impl FirewallAnalyzer {
     pub fn new() -> Self {
         Self {
-            ruleset_mappings: Self::initialize_ruleset_mappings(),
+            ruleset_mappings: initialize_ruleset_mappings(),
         }
-    }
-
-    fn initialize_ruleset_mappings() -> HashMap<String, RulesetInfo> {
-        [
-            (
-                CLOUDFLARE_RULESET_ID.to_string(),
-                RulesetInfo::new("Cloudflare Rules", colored::Color::Blue),
-            ),
-            (
-                OWASP_RULESET_ID.to_string(),
-                RulesetInfo::new("OWASP Rules", colored::Color::Green),
-            ),
-            (
-                LEAKED_CREDS_RULESET_ID.to_string(),
-                RulesetInfo::new("Leaked Credentials Rules", colored::Color::Red),
-            ),
-        ]
-        .into_iter()
-        .collect()
     }
 
     pub fn analyze_file<P: AsRef<Path>>(&self, path: P, format: String) -> Result<()> {
@@ -156,6 +137,7 @@ impl<'a> EventAnalyzer<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::{CLOUDFLARE_RULESET_ID, OWASP_RULESET_ID};
 
     // Move test helpers to a separate module
     mod test_helpers {

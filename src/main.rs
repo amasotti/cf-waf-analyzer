@@ -1,5 +1,6 @@
 use cf_waf_analyzer::cli::{Cli, Commands};
 use cf_waf_analyzer::error::Result;
+use cf_waf_analyzer::FirewallAnalyzer;
 use clap::Parser;
 use std::process;
 
@@ -15,7 +16,7 @@ fn main() {
 fn run(cli: Cli) -> Result<()> {
     match cli.command {
         Commands::Analyze { input, format } => {
-            let analyzer = cf_waf_analyzer::analyzer::FirewallAnalyzer::new();
+            let analyzer = FirewallAnalyzer::new();
             analyzer.analyze_file(&input, format)?;
         }
     }
