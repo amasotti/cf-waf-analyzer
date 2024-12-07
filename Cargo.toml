@@ -1,0 +1,26 @@
+[package]
+name = "cf-waf-analyzer"
+version = "0.1.0"
+edition = "2021"
+authors = ["Antonio Masotti <toniomasotti@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/amasotti/cf-waf-analyzer"
+license = "MIT"
+keywords = ["cloudflare", "waf", "parser", "security", "firewall"]
+categories = ["command-line-utilities"]
+
+[[bin]]
+name = "wafstat"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[dependencies]
+clap = { version = "4.5.23", features = ["derive"] }
+colored = "2.1.0"
+serde = { version = "1.0.215", features = ["derive"] }
+serde_json = "1.0.133"
+thiserror = "2.0.5"
