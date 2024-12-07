@@ -1,6 +1,6 @@
-use clap::Parser;
 use cf_waf_analyzer::cli::{Cli, Commands};
 use cf_waf_analyzer::error::Result;
+use clap::Parser;
 use std::process;
 
 fn main() {
