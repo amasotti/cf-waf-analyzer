@@ -12,7 +12,7 @@ type RulesetMap = HashMap<String, HashMap<String, i32>>;
 type CountMap = HashMap<String, i32>;
 
 pub struct FirewallAnalyzer {
-    ruleset_mappings: HashMap<String, RulesetInfo>,
+    pub ruleset_mappings: HashMap<String, RulesetInfo>,
 }
 
 impl Default for FirewallAnalyzer {
