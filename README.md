@@ -24,7 +24,23 @@ The `-f` flag is optional and allows you to specify the output format. The avail
 ## Example
 
 ```sh
-wafstat logs/waf_log.json
+wafstat analyze logs/waf_log.json
+```
+
+To run your Rust project with Docker, you can add the following instructions to your `README.md`:
+
+## Running with Docker
+
+1. **Build the Docker image:**
+
+```sh
+docker build -t wafstat .
+```
+
+2. **Run the Docker container:**
+
+```sh
+docker run --rm -v $(pwd)/example-logs:/app/input wafstat analyze /app/input/firewall-events.json --format md
 ```
 
 ## License
