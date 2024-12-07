@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Cache Cargo registry
         uses: actions/cache@v4
@@ -71,5 +73,10 @@ jobs:
 
       - name: Install git-cliff
         if: github.event_name != 'workflow_dispatch'
-        run: cargo install git-cliff && git cliff --unreleased --bump
-
+        uses: orhun/git-cliff-action@v3
+        with:
+          config: ./.github/cliff.toml
+          args: --unreleased --bump
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
