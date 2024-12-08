@@ -35,12 +35,8 @@ jobs:
 
       - name: Changelog
         id: changelog
-        uses: orhun/git-cliff-action@v4
-        with:
-          config: ./.github/cliff.toml
-          args: -o CHANGES.md --verbose --latest
-        env:
-          OUTPUT: CHANGES.md
+        run: |
+          cargo install git-cliff && git cliff --latest --output CHANGES.md
 
       - name: Create GitHub Release
         id: create_release
@@ -49,6 +45,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           name: Release ${{ github.ref_name }}
-          body: |
-            ${{ steps.changelog.outputs.changelog }}
+          bodyFile: CHANGES.md
           artifacts: 'wafstat,CHANGES.md'
