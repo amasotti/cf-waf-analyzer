@@ -1,7 +1,9 @@
 use crate::error::Result;
 use crate::model::{FirewallEvent, RulesetInfo};
 use crate::output::output_formatter::OutputFormatter;
-use crate::{initialize_ruleset_mappings, AnalysisResult};
+use crate::{
+    initialize_rule_id_mapping, initialize_ruleset_mappings, AnalysisResult, RulesetInfoMap,
+};
 use std::collections::{HashMap, HashSet};
 use std::fs::File;
 use std::io::BufReader;
@@ -13,6 +15,7 @@ type CountMap = HashMap<String, i32>;
 
 pub struct FirewallAnalyzer {
     pub ruleset_mappings: HashMap<String, RulesetInfo>,
+    pub rule_id_mappings: RulesetInfoMap,
 }
 
 impl Default for FirewallAnalyzer {
@@ -25,6 +28,7 @@ impl FirewallAnalyzer {
     pub fn new() -> Self {
         Self {
             ruleset_mappings: initialize_ruleset_mappings(),
+            rule_id_mappings: initialize_rule_id_mapping(),
         }
     }
 

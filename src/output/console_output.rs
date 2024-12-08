@@ -5,17 +5,21 @@
 /// prints the analysis results to the console using the provided formatter.
 use crate::model::RulesetInfo;
 use crate::output::Formatter;
-use crate::{initialize_ruleset_mappings, AnalysisResult};
+use crate::{
+    initialize_rule_id_mapping, initialize_ruleset_mappings, AnalysisResult, RulesetInfoMap,
+};
 use std::collections::HashMap;
 
 pub struct ConsoleOutput {
     ruleset_mappings: HashMap<String, RulesetInfo>,
+    rule_id_mappings: RulesetInfoMap,
 }
 
 impl ConsoleOutput {
     pub fn new() -> Self {
         Self {
             ruleset_mappings: initialize_ruleset_mappings(),
+            rule_id_mappings: initialize_rule_id_mapping(),
         }
     }
 
@@ -67,7 +71,7 @@ impl ConsoleOutput {
                 "{}",
                 formatter.format_subsection(&ruleset_info.name, ruleset_id)
             );
-            self.print_sorted_items(rule_counts, "occurrences", usize::MAX, formatter);
+            self.print_sorted_rules(rule_counts, "occurrences", usize::MAX, formatter);
         }
     }
 
@@ -83,6 +87,29 @@ impl ConsoleOutput {
 
         for (item, count) in sorted_items.iter().take(limit) {
             println!("{}", formatter.format_item(item, **count, label));
+        }
+        println!();
+    }
+
+    fn print_sorted_rules(
+        &self,
+        items: &HashMap<String, i32>,
+        label: &str,
+        limit: usize,
+        formatter: &impl Formatter,
+    ) {
+        let mut sorted_items: Vec<_> = items.iter().collect();
+        sorted_items.sort_by(|a, b| b.1.cmp(a.1));
+
+        for (item, count) in sorted_items.iter().take(limit) {
+            let human_readable_name = self
+                .rule_id_mappings
+                .get(item.as_str())
+                .unwrap_or(&"Unknown Rule Name");
+            println!(
+                "{}",
+                formatter.format_rule(item.as_str(), **count, label, human_readable_name)
+            );
         }
         println!();
     }

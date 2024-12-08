@@ -30,7 +30,10 @@ pub trait Formatter {
     /// * `key` - The key of the item
     /// * `value` - The value of the item
     /// * `label` - The label of the item
-    fn format_item(&self, key: &str, value: i32, label: &str) -> String;
+    fn format_item(&self, key: &str, value: i32, count_label: &str) -> String;
+
+    fn format_rule(&self, key: &str, value: i32, count_label: &str, rule_label: &str) -> String;
+
     /// Formats a statistic with a key and value
     /// Example: "Total events: 1000"
     ///

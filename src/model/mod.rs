@@ -65,6 +65,7 @@ impl RulesetInfo {
 #[derive(Debug)]
 pub struct AnalysisResult {
     pub total_events: usize,
+    /// RuleID -> Rule ID -> Count
     pub ruleset_rules: HashMap<String, HashMap<String, i32>>,
     pub endpoints: HashMap<String, i32>,
     pub paths: HashMap<String, i32>,

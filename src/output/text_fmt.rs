@@ -16,8 +16,23 @@ impl Formatter for TextFormatter {
         format!("\n=== {} ({}) ===", text, id.dimmed())
     }
 
-    fn format_item(&self, key: &str, value: i32, label: &str) -> String {
-        format!("{}: {} {}", key.cyan(), value.to_string().yellow(), label)
+    fn format_item(&self, key: &str, value: i32, count_label: &str) -> String {
+        format!(
+            "{}: {} {}",
+            key.cyan(),
+            value.to_string().yellow(),
+            count_label
+        )
+    }
+
+    fn format_rule(&self, key: &str, value: i32, count_label: &str, rule_label: &str) -> String {
+        format!(
+            "{}: {} {} ({})",
+            key.cyan(),
+            value.to_string().yellow(),
+            count_label,
+            rule_label
+        )
     }
 
     fn format_stat(&self, key: &str, value: impl std::fmt::Display) -> String {

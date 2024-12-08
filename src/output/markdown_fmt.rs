@@ -15,8 +15,12 @@ impl Formatter for MarkdownFormatter {
         format!("\n### {} ({})", text, id)
     }
 
-    fn format_item(&self, key: &str, value: i32, label: &str) -> String {
-        format!("- `{}`: {} {}", key, value, label)
+    fn format_item(&self, key: &str, value: i32, count_label: &str) -> String {
+        format!("- `{}`: {} {}", key, value, count_label)
+    }
+
+    fn format_rule(&self, key: &str, value: i32, count_label: &str, rule_label: &str) -> String {
+        format!("- `{}`: {} {} [{}]", key, value, count_label, rule_label)
     }
 
     fn format_stat(&self, key: &str, value: impl std::fmt::Display) -> String {
